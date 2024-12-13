@@ -101,11 +101,11 @@ Retrieves the all vendors or filter on the basis of query params.
 
 **Error:** `400 Bad Request`
 
-````json
+```json
 {
   "message": "Failed to fetch vendors"
 }
-````
+```
 
 ### 3. Delete Vendor
 
@@ -115,7 +115,7 @@ Deletes a vendor.
 
 **URL Parameters:**
 
-- `id`: Module ID (string)
+- `id`: Vendor ID (string)
 
 **Response:** `200 OK`
 
@@ -123,7 +123,7 @@ Deletes a vendor.
 {
   "message": "Vendor deleted successfully"
 }
-````
+```
 
 **Errors:**
 
@@ -138,7 +138,7 @@ Update a vendor using it's object id
 
 **URL Parameters:**
 
-- `id`: Module ID (string)
+- `id`: Vendor ID (string)
 
 **Request Body:**
 
@@ -169,7 +169,41 @@ Update a vendor using it's object id
 - `404 Not Found`: Vendor not found
 - `400 Bad Request`: Failed to update vendor
 
+``
+
+### 5. Get Vendor By id
+
+Update a vendor using it's object id
+
+**Endpoint:** `GET /:id`
+
+**URL Parameters:**
+
+- `id`: Vendor ID (string)
+
+**Response:** `200 OK`
+
+```json
+{
+  {
+    "_id":"string",
+  "vendorName": "string",
+  "contactName": "string",
+  "contactEmail": "string",
+  "contactPhone": "string",
+  "address": "string",
+  "website": "string",
+  "loginName": "string",
+  "imagePortalWebsite": "string",
+  "status": "active"| "inactive" | "archive"
+}
+}
 ```
+
+**Errors:**
+
+- `404 Not Found`: Vendor not found
+- `400 Bad Request`: Failed to fetch vendor
 
 ## Error Handling
 
@@ -185,6 +219,8 @@ The API is built with TypeScript support, providing type safety through interfac
 
 - `IModule` interface defines the shape of module objects
 - All endpoints are type-safe and provide proper TypeScript definitions
+
+```
 
 ```
 

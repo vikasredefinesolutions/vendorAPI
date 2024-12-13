@@ -38,6 +38,16 @@ export class ModuleAdminController {
     return this.responseService.apiResponseHandler(res, data);
   }
 
+  @Get('/:id')
+  async getVendorById(
+    @Param('id') id: string,
+    @Res()
+    res: Response,
+  ) {
+    const data = await this.vendorService.getVendorById(id);
+    return this.responseService.apiResponseHandler(res, data);
+  }
+
   @Put('/:id')
   async updateModuleDetails(
     @Param('id') id: string,

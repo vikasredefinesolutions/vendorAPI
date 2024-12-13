@@ -84,6 +84,32 @@ export class VendorService extends ResponseHandler {
     }
   }
 
+  async getVendorById(id: string) {
+    try {
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return this.catchErrorHandler(
+          'Invalid document id',
+          STATUS_CODES.BAD_REQUEST,
+        );
+      }
+      const vendor = await Vendor.findById(id);
+      if (!vendor) {
+        return this.catchErrorHandler(
+          'Vendor Not Found',
+          STATUS_CODES.BAD_REQUEST,
+        );
+      }
+
+      return this.responseHandler(
+        vendor,
+        'Vendor fetched  successfully',
+        STATUS_CODES.OK,
+      );
+    } catch (error: any) {
+      return this.catchErrorHandler(error?.message, STATUS_CODES.BAD_REQUEST);
+    }
+  }
+
   // Delete vendor
   async deleteVendor(id: string) {
     try {
@@ -103,7 +129,7 @@ export class VendorService extends ResponseHandler {
 
       return this.responseHandler(
         vendor,
-        'Vendor Module created successfully',
+        'Vendor Module deleted successfully',
         STATUS_CODES.OK,
       );
     } catch (error: any) {
